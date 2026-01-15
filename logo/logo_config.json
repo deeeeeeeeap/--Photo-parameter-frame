@@ -1,0 +1,25 @@
+{
+    "_说明": "Logo 配置文件 - 用户可自行添加品牌映射",
+    "_使用方法": "在 mappings 中添加新的品牌关键字和 Logo 文件名，Logo 文件放到 logo 目录下",
+    "_示例": "手机与相机厂商联动：小米→徕卡、OPPO→哈苏、vivo→蔡司",
+    "mappings": {
+        "nikon": "Nikon_Logo.svg.png",
+        "canon": "Canon_wordmark.svg.png",
+        "sony": "Sony_logo.svg.png",
+        "fujifilm": "Fujifilm_logo.svg.png",
+        "fuji": "Fujifilm_logo.svg.png",
+        "leica": "Leica_Camera.svg.png",
+        "panasonic": "Panasonic_logo.svg.png",
+        "lumix": "Panasonic_logo.svg.png",
+        "olympus": "Olympus_Corporation_logo.svg.png",
+        "om system": "Olympus_Corporation_logo.svg.png",
+        "hasselblad": "Hasselblad_Logo.svg.png",
+        "pentax": "Pentax_Logo.svg.png",
+        "_手机品牌联动（请自行添加 Logo 文件后取消注释）": "",
+        "_xiaomi": "Leica_Camera.svg.png",
+        "_oppo": "Hasselblad_Logo.svg.png",
+        "_vivo": "Zeiss_Logo.svg.png",
+        "_huawei": "Leica_Camera.svg.png",
+        "_oneplus": "Hasselblad_Logo.svg.png"
+    }
+}

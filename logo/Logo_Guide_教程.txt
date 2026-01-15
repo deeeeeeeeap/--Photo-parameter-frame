@@ -1,0 +1,94 @@
+================================================================================
+           LensFrame - Logo 自定义添加教程 / Logo Customization Guide
+================================================================================
+
+【中文】
+--------------------------------------------------------------------------------
+
+如何添加自定义品牌 Logo：
+
+1. 准备 Logo 文件
+   - 格式：PNG（推荐透明背景）
+   - 尺寸：建议宽度 500-1000 像素
+   - 命名：品牌名_Logo.svg.png（例如：Zeiss_Logo.svg.png）
+
+2. 将 Logo 文件放入 logo 文件夹
+   位置：[安装目录]\resources\logo\
+
+3. 编辑配置文件
+   打开：[安装目录]\resources\logo\logo_config.json
+   
+   在 "mappings" 中添加新的映射，格式如下：
+   "品牌关键字": "Logo文件名"
+   
+   例如（手机品牌联动）：
+   {
+     "mappings": {
+       ... 其他品牌 ...
+       "xiaomi": "Leica_Camera.svg.png",
+       "oppo": "Hasselblad_Logo.svg.png", 
+       "vivo": "Zeiss_Logo.svg.png",
+       "huawei": "Leica_Camera.svg.png"
+     }
+   }
+
+4. 重启 LensFrame 应用
+
+注意事项：
+- 品牌关键字必须小写
+- 配置文件中以下划线 "_" 开头的键会被忽略（可用于注释）
+- 确保 Logo 文件名与配置中的完全一致
+
+--------------------------------------------------------------------------------
+
+【English】
+--------------------------------------------------------------------------------
+
+How to Add Custom Brand Logos:
+
+1. Prepare the Logo File
+   - Format: PNG (transparent background recommended)
+   - Size: 500-1000 pixels width recommended
+   - Naming: BrandName_Logo.svg.png (e.g., Zeiss_Logo.svg.png)
+
+2. Place the Logo File in the Logo Folder
+   Location: [Install Directory]\resources\logo\
+
+3. Edit the Configuration File
+   Open: [Install Directory]\resources\logo\logo_config.json
+   
+   Add a new mapping in "mappings" with the following format:
+   "brand_keyword": "LogoFileName"
+   
+   Example (Phone Brand Partnerships):
+   {
+     "mappings": {
+       ... other brands ...
+       "xiaomi": "Leica_Camera.svg.png",
+       "oppo": "Hasselblad_Logo.svg.png",
+       "vivo": "Zeiss_Logo.svg.png",
+       "huawei": "Leica_Camera.svg.png"
+     }
+   }
+
+4. Restart the LensFrame Application
+
+Notes:
+- Brand keywords must be lowercase
+- Keys starting with underscore "_" are ignored (can be used as comments)
+- Ensure the logo filename matches exactly with the configuration
+
+================================================================================
+                    常见手机品牌联动 / Common Phone Brand Partnerships
+================================================================================
+
+小米 Xiaomi        →  徕卡 Leica
+OPPO              →  哈苏 Hasselblad
+vivo              →  蔡司 Zeiss
+华为 Huawei        →  徕卡 Leica
+一加 OnePlus       →  哈苏 Hasselblad
+荣耀 Honor         →  (可自定义)
+
+================================================================================
+                           © 2024 LensFrame
+================================================================================
