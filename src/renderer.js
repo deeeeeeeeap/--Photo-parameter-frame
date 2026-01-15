@@ -65,6 +65,20 @@ function initEventListeners() {
       }
     });
   }
+
+  // Logo 位置滑块
+  const logoPositionSlider = document.getElementById('logoPosition');
+  const logoPositionValue = document.getElementById('logoPositionValue');
+  if (logoPositionSlider) {
+    logoPositionSlider.addEventListener('input', () => {
+      logoPositionValue.textContent = `${logoPositionSlider.value}%`;
+    });
+    logoPositionSlider.addEventListener('change', () => {
+      if (state.selectedIndex >= 0 && !state.isProcessing) {
+        updatePreview();
+      }
+    });
+  }
 }
 
 function initDragDrop() {
@@ -241,8 +255,9 @@ async function updatePreview() {
   try {
     let posterBuffer;
     const logoScale = (document.getElementById('logoSize')?.value || 100) / 100;
+    const logoPosition = (document.getElementById('logoPosition')?.value || 50) / 100;
     if (template === 'blur') {
-      posterBuffer = await window.lensframe.generateBlurPoster(file.path, file.exif, true, 'high', logoScale);
+      posterBuffer = await window.lensframe.generateBlurPoster(file.path, file.exif, true, 'high', logoScale, logoPosition);
     } else {
       posterBuffer = await window.lensframe.generateClassicPoster(file.path, file.exif, true);
     }
@@ -304,8 +319,9 @@ async function handleGenerate() {
     try {
       let posterBuffer;
       const logoScale = (document.getElementById('logoSize')?.value || 100) / 100;
+      const logoPosition = (document.getElementById('logoPosition')?.value || 50) / 100;
       if (template === 'blur') {
-        posterBuffer = await window.lensframe.generateBlurPoster(file.path, file.exif, false, quality, logoScale);
+        posterBuffer = await window.lensframe.generateBlurPoster(file.path, file.exif, false, quality, logoScale, logoPosition);
       } else {
         posterBuffer = await window.lensframe.generateClassicPoster(file.path, file.exif, false);
       }
@@ -349,8 +365,9 @@ async function handleBatchExport() {
 
       let posterBuffer;
       const logoScale = (document.getElementById('logoSize')?.value || 100) / 100;
+      const logoPosition = (document.getElementById('logoPosition')?.value || 50) / 100;
       if (template === 'blur') {
-        posterBuffer = await window.lensframe.generateBlurPoster(file.path, file.exif, false, quality, logoScale);
+        posterBuffer = await window.lensframe.generateBlurPoster(file.path, file.exif, false, quality, logoScale, logoPosition);
       } else {
         posterBuffer = await window.lensframe.generateClassicPoster(file.path, file.exif, false);
       }

@@ -352,7 +352,7 @@ function generateAtmosphereGradient(width, height) {
   `;
 }
 
-ipcMain.handle('generate-blur-poster', async (event, filePath, exifInfo, isPreview = false, exportQuality = 'high', logoScale = 1.0) => {
+ipcMain.handle('generate-blur-poster', async (event, filePath, exifInfo, isPreview = false, exportQuality = 'high', logoScale = 1.0, logoPosition = 0.5) => {
   try {
     // exportQuality: 'high' = 原画质, 'fast' = 快速导出（限制最大 3000px）
     const MAX_SIZE_HIGH = 8000;   // 原画质最大 8000px（防止内存溢出）
@@ -562,11 +562,17 @@ ipcMain.handle('generate-blur-poster', async (event, filePath, exifInfo, isPrevi
       const paramsY = posterHeight - Math.round(bottomInfoHeight * 0.15);
       // 相机镜头 Y：参数上方
       const cameraY = paramsY - Math.round(paramsFontSize * 1.4);
-      // Logo Y：竖幅照片往上更多（0.15），横幅照片适中（0.35）
-      const logoAreaTop = infoStartY;
-      const logoAreaBottom = cameraY - Math.round(cameraFontSize * 0.8);
-      const logoPositionRatio = isPortrait ? 0.15 : 0.35;
-      logoY = logoAreaTop + Math.round((logoAreaBottom - logoAreaTop - logoHeight) * logoPositionRatio);
+      // Logo Y：使用用户指定的位置比例 (0=最上, 1=最下)
+      // 计算“安全”区域
+      const safeTop = infoStartY;
+      const safeBottom = cameraY - Math.round(cameraFontSize * 0.8) - logoHeight;
+
+      // 添加缓冲空间以增加调节范围（允许一定程度的溢出或留白）
+      const rangeBuffer = Math.round(bottomInfoHeight * 0.4);
+      const minLogoY = safeTop - rangeBuffer;
+      const maxLogoY = safeBottom + rangeBuffer;
+
+      logoY = minLogoY + Math.round((maxLogoY - minLogoY) * logoPosition);
       logoX = Math.round((posterWidth - logoWidth) / 2);
 
       textSvg = `
